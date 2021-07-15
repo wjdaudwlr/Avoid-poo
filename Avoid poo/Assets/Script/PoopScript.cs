@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class PoopScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public float PoopSpeed;
+    public GameObject manager;
+    private void Awake()
     {
-        
+        manager = GameObject.Find("GameManager");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(0, -PoopSpeed, 0);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            Destroy(gameObject);
+            manager.GetComponent<GameManager>().ScoreAdd();
+        }
+        else if (collision.gameObject.tag == "Player")
+        {
+            manager.GetComponent<GameManager>().GameOver();
+        }
+    }
+
+
+    
 }

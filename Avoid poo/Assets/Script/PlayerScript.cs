@@ -6,6 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
     public Rigidbody2D rigid;
     public float PlayerSpeed;
+    
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -13,6 +14,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
+        // ÁÂ¿ì ÀÌµ¿
         float move = Input.GetAxisRaw("Horizontal");
         rigid.AddForce(new Vector2(move * PlayerSpeed,rigid.velocity.y));
 
